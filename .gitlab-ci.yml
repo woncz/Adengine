@@ -1,0 +1,19 @@
+image: maven:latest
+
+stages:
+  - build-stage
+  - test-stage
+
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+build-job:
+  stage: build-stage
+  script:
+    - mvn compile
+
+test-job:
+  stage: test-stage
+  script:
+    - mvn test
